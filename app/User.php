@@ -36,4 +36,44 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function add($fields)
+    {
+        $user = new static;
+        $user->fill($fields);
+        $user->password = bcrypt($fields['password']);
+        $user->save();
+
+        return $user;
+    }
+    public function edit($fields)
+    {
+        $this->fill($fields);
+        $this->password = bcrypt($fields['password']);
+        $this->save();
+    }
+    public function remove()
+    {
+        $this->delete();
+    }
+
+
+    public function makeAdmin()
+    {
+        $this->status = 1;
+        $this->save();
+    }
+    public function makeNormal()
+    {
+        $this->status = 0;
+        $this->save();
+    }
+    public function toggleAdmin($value)
+    {
+        if($value == null)
+        {
+            return $this->makeNormal();
+        }
+        return $this->makeAdmin();
+    }
 }

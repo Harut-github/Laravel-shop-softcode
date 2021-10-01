@@ -25,8 +25,15 @@ Route::get('/blog', 'BlogController@index');
 Route::get('/blog/{slug}', 'BlogController@single');
 
 
-Route::get('/general_admin', 'Admin\DashboardController@index');
-Route::resource('/general_admin/categories', 'Admin\CategoriesController');
+Route::get('/register', 'AuthController@registerForm');
+Route::post('/register', 'AuthController@register')->name('register');
+Route::get('/login','AuthController@loginForm');
 
-Route::resource('/general_admin/posts', 'Admin\PostsController');
+Route::group(['prefix'=>'general_admin','namespace'=>'Admin'], function(){
+    Route::get('/', 'DashboardController@index');
+    Route::resource('/categories', 'CategoriesController');
+    Route::resource('/posts', 'PostsController');
+    Route::resource('/users', 'UsersController');
+});
+
 

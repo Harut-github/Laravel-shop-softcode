@@ -37,6 +37,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //for middlwere roles
+    public function isAdmin()
+    {
+        return $this->status === 1;
+    }
+
     public static function add($fields)
     {
         $user = new static;

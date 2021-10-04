@@ -1,5 +1,5 @@
 @extends('general_admin.layout')
-  @section('title', 'Categories page')
+@section('title', 'Categories page')
 @section('content')
 <section class="content">
   <div class="box">

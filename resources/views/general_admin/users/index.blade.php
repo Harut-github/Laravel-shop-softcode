@@ -33,8 +33,18 @@
                             <img src="../assets/dist/img/photo2.png" alt="" class="img-responsive" width="150">
                         </td>
                         <td>
-                            <a href="edit.html" class="fa fa-pencil"></a>
-                            <a href="#" class="fa fa-remove"></a>
+                            <a href="{{ route('users.edit', $user->id) }}" class="fa fa-pencil"></a>
+
+                            {{-- @if (Auth::user()->status == 1) --}}
+                            <form action="{{ route('users.destroy', $user->id)}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button onclick="return confirm('вы уверены что хотите удалить???')">
+                                      <i class="fa fa-remove"></i>
+                                 </button>
+                           </form>
+                            {{-- @endif --}}
+
                         </td>
                     </tr>
                     @endforeach

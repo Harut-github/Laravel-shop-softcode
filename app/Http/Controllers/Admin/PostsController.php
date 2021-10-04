@@ -48,6 +48,8 @@ class PostsController extends Controller
 
        public function destroy(Post $Post)
        {
+          $this->authorize('post_delete');
+
           $Post->delete();
 
           return redirect('/general_admin/posts');

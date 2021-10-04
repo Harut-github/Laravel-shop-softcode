@@ -1,4 +1,6 @@
-@extends('general_admin.layout') @section('title', 'Posts edit') @section('content')
+@extends('general_admin.layout')
+@section('title', 'Posts edit')
+@section('content')
 <section class="content">
 
     <!-- Default box -->
@@ -13,11 +15,11 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Имя</label>
-                    <input type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="" value="{{old('name')}}">
+                    <input type="text" class="form-control" name="name" id="exampleInputEmail1"  placeholder="" value="{{ $user->name }}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">E-mail</label>
-                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="" value="{{old('email')}}">
+                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="" value="{{ $user->email }}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Пароль</label>
@@ -26,7 +28,7 @@
                 <div class="form-group">
                     <img src="../assets/dist/img/photo1.png" alt="" width="200" class="img-responsive">
                     <label for="exampleInputFile">Аватар</label>
-                    <input type="file" id="exampleInputFile">
+                    <input type="file" id="exampleInputFile" name="file">
 
                     <p class="help-block">Какое-нибудь уведомление о форматах..</p>
                 </div>
@@ -34,7 +36,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            <button class="btn btn-default">Назад</button>
+            <a href="/general_admin/users" class="btn btn-default">Назад</a>
             <button class="btn btn-warning pull-right">Изменить</button>
         </div>
         </form>

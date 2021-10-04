@@ -7,8 +7,8 @@
 <section>
 <div class="container">
 	<div class="row">
-        <form action="/register" method="post">
-            {{csrf_field()}}
+        <form action="{{route('checkLogin')}}" method="post">
+            @csrf
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <input type="text" placeholder="email" name="email">
             </div>

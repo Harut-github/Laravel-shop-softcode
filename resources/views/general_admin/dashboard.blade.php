@@ -5,14 +5,14 @@
   <!-- Default box -->
   <div class="box">
     <div class="box-header with-border">
-      <h3 class="box-title">Главная страница</h3>
+      <h3 class="box-title">Home Page</h3>
     </div>
     <div class="box-body">
-      Текст инструкции по пользованию админкой
+      Settings Admins
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
-      и здесь есть место для какого-нибудь текста
+      Hello word
     </div>
     <!-- /.box-footer-->
   </div>

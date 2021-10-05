@@ -38,10 +38,10 @@ class User extends Authenticatable
     ];
 
     //for middlwere roles
-    public function isAdmin()
-    {
-        return $this->status === 1;
-    }
+    // public function admin()
+    // {
+    //     return $this->status === 1;
+    // }
 
     public static function add($fields)
     {
@@ -62,8 +62,6 @@ class User extends Authenticatable
     {
         $this->delete();
     }
-
-
     public function makeAdmin()
     {
         $this->status = 1;

@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-
-use Closure;
 use Illuminate\Support\Facades\Auth;
-class RoleUsers
+use Closure;
+
+class AutherUsers
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,10 @@ class RoleUsers
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->status == 1)
+        if (Auth::check() &&  Auth::user()->status == 2)
         {
             return $next($request);
         }
         abort(404);
-
     }
 }

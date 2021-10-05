@@ -25,7 +25,7 @@ class AuthController extends Controller
     }
     public function checkLogin(Request $request)
     {
-        // dd($request->all());
+        //  dd($request->all());
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -37,7 +37,7 @@ class AuthController extends Controller
             return redirect()->intended('/');
         }
     }
-    public function loginForm()
+    public function login()
     {
         return view('pages.login');
     }

@@ -21,24 +21,23 @@ Route::get('/search', 'SearchController@index');
 
 Route::get('/json','JsonsController@index');
 
-Route::get('/blog', 'BlogController@index');
+// Route::get('/blog', 'BlogController@index');
 Route::get('/blog/{slug}', 'BlogController@single');
 
 
 Route::get('/register', 'AuthController@registerForm');
 Route::post('/register', 'AuthController@register')->name('register');
 
-Route::get('/login','AuthController@loginForm')->name('loginForm');
+Route::get('/login','AuthController@login')->name('login');
 
-Route::post('/',' @checkLogin')->name('checkLogin');
+Route::post('/','AuthController@checkLogin')->name('checkLogin');
 Route::post('/login','AuthController@logout')->name('logout');
 
-Route::group(['middleware'=>'status'], function(){
-	Route::get('/blog', 'BlogController@index')->name('blog');;
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('/blog', 'BlogController@index')->name('blog');
 });
 
-
-Route::group(['prefix'=>'general_admin','namespace'=>'Admin'], function(){
+Route::group(['prefix'=>'general_admin','namespace'=>'Admin','middleware'=>'admin'], function(){
     Route::get('/', 'DashboardController@index');
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/posts', 'PostsController');

@@ -27,40 +27,39 @@
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
         </li>
+        @if (Auth::check())
+        <li class="nav-item">
+            <a class="nav-link" href="/mypage">My Page</a>
+        </li>
+        @endif
       </ul>
       <form class="d-flex" action="/search" method="GET" >
       {{ csrf_field() }}
         <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      <ul>
+      <div>
         @guest
-           <li class="nav-item">
-               <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-           </li>
-           @if (Route::has('register'))
-               <li class="nav-item">
-                   <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-               </li>
-           @endif
-           @else
-               <li class="nav-item dropdown">
-                   <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                       {{ Auth::user()->name }} - {{ Auth::user()->status }} <span class="caret"></span>
-                   </a>
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+            @if (Route::has('register'))
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            @endif
+        @else
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }} - {{ Auth::user()->status }} <span class="caret"></span>
+            </a>
 
-                   <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                   document.getElementById('logout-form').submit();">
-                   {{ __('Logout') }}
-               </a>
+            <a class="dropdown-item" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+            </a>
 
-               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
-               </form>
-               </li>
-           @endguest
-       </ul>
+            </form>
+        @endguest
+       </div>
     </div>
   </div>
 </nav>

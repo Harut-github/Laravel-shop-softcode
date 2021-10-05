@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,10 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
+
+        // if(Auth::user()->status == 2){
+        //     dd('you are auther ');
+        // }
         return view('general_admin.users.index', compact('users'));
     }
 

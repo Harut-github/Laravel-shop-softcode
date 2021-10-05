@@ -21,21 +21,18 @@ Route::get('/search', 'SearchController@index');
 
 Route::get('/json','JsonsController@index');
 
-// Route::get('/blog', 'BlogController@index');
-Route::get('/blog/{slug}', 'BlogController@single');
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('/blog', 'BlogController@index')->name('blog');
+    Route::get('/blog/{slug}', 'BlogController@single');
+});
 
+Route::get('/mypage','MypageController@index');
 
 Route::get('/register', 'AuthController@registerForm');
 Route::post('/register', 'AuthController@register')->name('register');
-
 Route::get('/login','AuthController@login')->name('login');
-
 Route::post('/','AuthController@checkLogin')->name('checkLogin');
 Route::post('/login','AuthController@logout')->name('logout');
-
-Route::group(['middleware'=>'auth'], function(){
-    Route::get('/blog', 'BlogController@index')->name('blog');
-});
 
 Route::group(['prefix'=>'general_admin','namespace'=>'Admin','middleware'=>'admin'], function(){
     Route::get('/', 'DashboardController@index');

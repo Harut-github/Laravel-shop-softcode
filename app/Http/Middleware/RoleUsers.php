@@ -20,6 +20,5 @@ class RoleUsers
             return $next($request);
         }
         abort(404);
-
     }
 }

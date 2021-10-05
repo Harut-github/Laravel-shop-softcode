@@ -230,7 +230,6 @@
         </li>
         <li><a href="/general_admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
 
-
         <li><a href="#"><i class="fa fa-user-plus"></i> <span>Followers</span></a></li>
 
 

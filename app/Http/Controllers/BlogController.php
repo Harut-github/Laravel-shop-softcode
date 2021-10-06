@@ -16,7 +16,13 @@ class BlogController extends Controller
 
     public function single($slug)
     {
-        $posts = Post::where('slug', $slug)->firstOrFail();
+
+        $posts = Post::where('slug', $slug)->first();
+
+        //for post views count
+        $views = $posts->views;
+        $views++;
+        $posts->update(['views' => $views]);
 
         return view('pages.blog.single', compact('posts'));
     }

@@ -23,10 +23,11 @@
 		<div class="col-sm-12 col-md-4 col-lg-4">
 		 	<div class="card">
 			    <img class="card-img-top" src="/{{ $post->image ?? 'default-image.jpg' }}" alt="Card image">
-			    <div>
-			    	<a href="{{route('getPostsCategory',$post->category['slug'])}}" class="btn btn-link">{{$post->category['title']}}</a>
-			    </div>
 			    <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between" style="">
+                        <a href="{{route('getPostsCategory',$post->category['slug'])}}" >{{$post->category['title']}}</a>
+                        <i>Views - {{ $post->views }}</i>
+                    </div>
 			      <h4 class="card-title">{{$post->title}}</h4>
 			      <p class="card-text">{{$post->description}}</p>
 			      <a href="/blog/{{$post->slug}}" class="btn btn-primary">See page</a>

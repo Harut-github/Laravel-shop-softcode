@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,8 @@ class BlogController extends Controller
     public function index()
     {
         $posts = Post::paginate(1);
-        return view('pages.blog.index', compact('posts'));
+        $categories = Category::orderBy('title')->get(); //filter abc
+        return view('pages.blog.index', compact('posts','categories'));
     }
 
     public function single($slug)
@@ -18,5 +19,17 @@ class BlogController extends Controller
         $posts = Post::where('slug', $slug)->firstOrFail();
 
         return view('pages.blog.single', compact('posts'));
+    }
+
+
+    //for categories fillter
+    public function getPostsCategory($slug)
+    {
+        $categories = Category::orderBy('title')->get();
+        $current_category = Category::where('slug',$slug)->first();
+        return view('pages.blog.index', [
+            'posts'=> $current_category->posts()->paginate(),
+            'categories'=> $categories,
+        ]);
     }
 }

@@ -10,7 +10,7 @@ class JsonsController extends Controller
     {
 
         $users = @json_decode(file_get_contents("https://jsonplaceholder.typicode.com/users"));
-        
+
         $jsons = @json_decode(file_get_contents("https://jsonplaceholder.typicode.com/posts"));
 
         return view('pages.json.index', compact('jsons','users'));

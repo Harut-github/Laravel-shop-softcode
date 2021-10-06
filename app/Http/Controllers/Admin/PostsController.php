@@ -16,14 +16,19 @@ class PostsController extends Controller
 
      public function create()
       {
-         return view('general_admin.posts.create');
+         $categories = Category::all();
+         return view('general_admin.posts.create', compact('categories'));
       }
 
-      public function store()
+      public function store(Request $request)
       {
+        //   dd($request->all());
          Post::create(request()->validate([
              'title' => ['required', 'min:3'],
-             'slug' => ['required','unique:categories', 'min:3']
+             'slug' => ['required','unique:posts', 'min:3'],
+             'category_id' => ['nullable'],
+             'description' => ['nullable'],
+             'text' => ['nullable']
          ]));
 
          return redirect('/general_admin/posts');
@@ -41,16 +46,22 @@ class PostsController extends Controller
           $Post->update(request()->validate([
               'title' => ['required', 'min:3'],
               'slug' => ['required','unique:categories','min:3'],
+              'category_id' => ['nullable'],
+               'description' => ['nullable'],
+               'text' => ['nullable']
           ]));
+
+          $Post->save();
 
           return redirect('/general_admin/posts');
        }
 
-       public function destroy(Post $Post)
+       public function destroy($id)
        {
-          $this->authorize('post_delete');
 
-          $Post->delete();
+          $post = Post::find($id);
+
+          $post->delete();
 
           return redirect('/general_admin/posts');
        }

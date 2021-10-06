@@ -26,6 +26,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/blog/{slug}', 'BlogController@single');
 });
 
+Route::get('/category/{slug}', 'BlogController@getPostsCategory')->name('getPostsCategory');
+
 Route::get('/mypage','MypageController@index');
 
 Route::get('/register', 'AuthController@registerForm');

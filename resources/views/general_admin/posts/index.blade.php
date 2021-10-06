@@ -27,8 +27,9 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}
+                    <td>{{$post->title}}
                     </td>
-                    <td>categories</td>
+                    <td>{{$post->category['title']}}</td> {{-- for this look in post modal --}}
                     <td>tags</td>
                     <td>
                         <img src="/{{$post->image}}" alt="" width="100">

@@ -5,6 +5,18 @@
 <h1>Blog</h1>
 </div>
 <section>
+<section>
+    <div class="container">
+        <div class="row text-center">
+            <h2>Categories filter</h2>
+            <div style="margin:15px 0;">
+                @foreach($categories as $category)
+                    <a class="btn btn-info m-3" href="{{route('getPostsCategory', $category->slug)}}">{{$category->title}}</a>
+                 @endforeach
+            </div>
+        </div>
+    </div>
+</section>
 <div class="container">
 	<div class="row">
 	@foreach($posts as $post)
@@ -12,7 +24,7 @@
 		 	<div class="card">
 			    <img class="card-img-top" src="/{{ $post->image ?? 'default-image.jpg' }}" alt="Card image">
 			    <div>
-			    	<button type="button" class="btn btn-link">category</button>
+			    	<a href="{{route('getPostsCategory',$post->category['slug'])}}" class="btn btn-link">{{$post->category['title']}}</a>
 			    </div>
 			    <div class="card-body">
 			      <h4 class="card-title">{{$post->title}}</h4>

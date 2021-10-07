@@ -13,7 +13,7 @@ class BlogController extends Controller
     public function index()
     {
 
-        $posts = Post::paginate(1);
+        $posts = Post::paginate(2);
         $categories = Category::orderBy('title')->get(); //filter abc
         return view('pages.blog.index', compact('posts','categories'));
     }

@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.layout');
-});
+// Route::get('/', function () {
+//     return view('pages.layout');
+// });
+Route::get('/', 'HomeController@index');
 
 Route::get('/search', 'SearchController@index');
 

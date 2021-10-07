@@ -31,7 +31,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="../../index2.html" class="logo">
+    <a href="/" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -213,26 +213,33 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
-          <a href="#">
+          <a href="/general_admin">
             <i class="fa fa-dashboard"></i> <span>Admin panel</span>
           </a>
         </li>
-        <li><a href="/general_admin/posts"><i class="fa fa-sticky-note-o"></i> <span>Posts</span></a></li>
-        <li><a href="/general_admin/categories"><i class="fa fa-list-ul"></i> <span>Categories</span></a></li>
+        <li><a href="/general_admin/posts">
+            <i class="fa fa-sticky-note-o"></i> <span>Posts</span></a>
+        </li>
+        <li>
+            <a href="/general_admin/categories">
+                <i class="fa fa-list-ul"> </i> <span>Categories</span>
+            </a>
+        </li>
         <li><a href="#"><i class="fa fa-tags"></i> <span>Tegs</span></a></li>
         <li>
           <a href="#">
             <i class="fa fa-commenting"></i> <span>Comments</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">5</small>
+                <small class="label pull-right bg-green">1</small>
             </span>
           </a>
         </li>
-        <li><a href="/general_admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
-
+        <li>
+            <a href="/general_admin/users">
+                <i class="fa fa-users"></i> <span>Users</span>
+            </a>
+        </li>
         <li><a href="#"><i class="fa fa-user-plus"></i> <span>Followers</span></a></li>
-
-
 
       </ul>
     </section>

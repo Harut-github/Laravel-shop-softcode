@@ -24,6 +24,7 @@ Route::get('/json','JsonsController@index');
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/blog', 'BlogController@index')->name('blog');
     Route::get('/blog/{slug}', 'BlogController@single');
+    Route::post('/comment', 'BlogController@comment')->name('comment');
 });
 
 Route::get('/category/{slug}', 'BlogController@getPostsCategory')->name('getPostsCategory');
@@ -41,6 +42,7 @@ Route::group(['prefix'=>'general_admin','namespace'=>'Admin','middleware'=>'admi
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/posts', 'PostsController');
     Route::resource('/users', 'UsersController');
+    Route::resource('/comments', 'CommentsController');
 });
 
 

@@ -194,7 +194,7 @@
           <img src="/admindashboard/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>Admin</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -227,7 +227,7 @@
         </li>
         <li><a href="#"><i class="fa fa-tags"></i> <span>Tegs</span></a></li>
         <li>
-          <a href="#">
+          <a href="/general_admin/comments">
             <i class="fa fa-commenting"></i> <span>Comments</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-green">1</small>
@@ -253,8 +253,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Привет! Это админка
-        <small>приятные слова..</small>
+        Hi! This is Admin
+        <small>everything will be OK</small>
       </h1>
     </section>
 

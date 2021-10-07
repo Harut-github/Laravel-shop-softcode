@@ -14,4 +14,9 @@ class Post extends Model
     {
         return $this->belongsTo(category::class);
     }
+
+     // Bunch posts + comments
+     public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

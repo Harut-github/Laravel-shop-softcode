@@ -1,41 +1,38 @@
 @extends('general_admin.layout')
-@section('title', 'Posts page')
+@section('title', 'Products page')
 @section('content')
 
 <section class="content">
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Листинг сущности</h3>
+            <h3 class="box-title">Products</h3>
         </div>
         <div class="box-body">
             <div class="form-group">
-                <a href="/general_admin/posts/create" class="btn btn-success">Добавить</a>
+                <a href="/general_admin/products/create" class="btn btn-success">Create</a>
             </div>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>ID</th>
                     <th>title</th>
-                    <th>Category</th>
-                    <th>Tegs</th>
+                    <th>Price</th>
                     <th>Img</th>
-                    <th>Действия</th>
                 </tr>
                 </thead>
                 <tbody>
-                 @foreach($posts as $post)
+                 @foreach($products as $product)
                 <tr>
-                    <td>{{$post->id}}</td>
-                    <td>{{$post->title}}
-                    <td>{{$post->category['title']}}</td> {{-- for this look in post modal --}}
-                    <td>tags</td>
+                    <td>{{$product->id}}</td>
+                    <td>{{$product->title}}</td>
+                    <td>{{$product->price}}</td>
                     <td>
-                        <img src="/{{$post->image}}" alt="" width="100">
+                        <img src="/{{$product->image}}" alt="" width="100">
                     </td>
                     <td>
-                    <a href="{{ route('posts.edit', $post->id)}}" class="fa fa-pencil"></a>
+                    <a href="{{ route('products.edit', $product->id)}}" class="fa fa-pencil"></a>
 
-                    <form action="{{ route('posts.destroy', $post->id)}}" method="POST">
+                    <form action="{{ route('products.destroy', $product->id)}}" method="POST">
                       @method('DELETE')
                       @csrf
                       <button onclick="return confirm('вы уверены что хотите удалить???')">

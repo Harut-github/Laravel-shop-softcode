@@ -22,15 +22,23 @@ Route::get('/search', 'SearchController@index');
 
 Route::get('/json','JsonsController@index');
 
+Route::get('/products','ProductController@index');
+
+Route::post('/ajaxproducts','ProductController@wishList')->name('wishList');;
+
+Route::get('/products/{slug}','ProductController@single');
+
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/blog', 'BlogController@index')->name('blog');
     Route::get('/blog/{slug}', 'BlogController@single');
     Route::post('/comment', 'BlogController@comment')->name('comment');
+
+    Route::get('/mypage','MypageController@index');
+    Route::get('/wishlist','MypageController@wishList')->name('wishList');
 });
 
 Route::get('/category/{slug}', 'BlogController@getPostsCategory')->name('getPostsCategory');
 
-Route::get('/mypage','MypageController@index');
 
 Route::get('/register', 'AuthController@registerForm');
 Route::post('/register', 'AuthController@register')->name('register');
@@ -44,6 +52,7 @@ Route::group(['prefix'=>'general_admin','namespace'=>'Admin','middleware'=>'admi
     Route::resource('/posts', 'PostsController');
     Route::resource('/users', 'UsersController');
     Route::resource('/comments', 'CommentsController');
+    Route::resource('/products', 'ProductsController');
 });
 
 

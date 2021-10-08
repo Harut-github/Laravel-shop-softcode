@@ -13,19 +13,20 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
+
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required'
+            'password' => 'required',
+            'avatar' => 'nullable|image'
         ]);
-       $user = User::add($request->all());
-       $user->generatePassword($request->get('password'));
+
+        $user = User::add($request->all());
 
        return redirect('/login');
     }
     public function checkLogin(Request $request)
     {
-        //  dd($request->all());
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],

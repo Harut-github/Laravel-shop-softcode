@@ -225,7 +225,7 @@
                 <i class="fa fa-list-ul"> </i> <span>Categories</span>
             </a>
         </li>
-        <li><a href="#"><i class="fa fa-tags"></i> <span>Tegs</span></a></li>
+        <li><a href="/general_admin/products"><i class="fa fa-product-hunt"></i> <span>Praducts</span></a></li>
         <li>
           <a href="/general_admin/comments">
             <i class="fa fa-commenting"></i> <span>Comments</span>
@@ -239,7 +239,6 @@
                 <i class="fa fa-users"></i> <span>Users</span>
             </a>
         </li>
-        <li><a href="#"><i class="fa fa-user-plus"></i> <span>Followers</span></a></li>
 
       </ul>
     </section>

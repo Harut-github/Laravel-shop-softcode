@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
@@ -25,11 +27,14 @@
           <a class="nav-link" href="/json">Json</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="/products">Praducts</a>
         </li>
         @if (Auth::check())
         <li class="nav-item">
             <a class="nav-link" href="/mypage">My Page</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/wishlist">My whish List</a>
         </li>
         @endif
       </ul>
@@ -66,6 +71,26 @@
 
 @yield('content')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+// $( ".js_click_praduct" ).click(function() {
+//   let product_id = $(this).attr('data-title');
+//   let product_title = $(this).attr('data-title');
+//   let product_slug = $(this).attr('data-slug');
+//   let product_price = $(this).attr('data-price');
+//   let product_img = $(this).attr('data-img');
+//   let token = $('meta[name="csrf-token"]').attr('content');
+//   $.ajax({
+//       url:"/ajaxproducts",
+//       method:"get",
+//       date:{product_id:product_id,product_title:product_title,product_slug:product_slug,product_price:product_price,product_img:product_img,token:token},
+//       success:function(date){
+//         alert('your Praduct added in wish list :)');
+//       }
+//   });
+
+// });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>

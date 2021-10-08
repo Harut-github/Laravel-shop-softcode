@@ -27,7 +27,6 @@
             <div class="col-3">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <strong>Bed POST</strong><br><br>
                         <h5 class="card-title">{{ $posts_bed->title }}</h5>
                         <p class="card-text">{{$posts_bed->description}}</p>
                         <a href="/blog/{{$posts_bed->slug}}" class="btn btn-primary">Link</a>
@@ -39,7 +38,6 @@
             <div class="col-3">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <strong>RANDOM POST</strong><br><br>
                         <h5 class="card-title">{{ $posts_random->title }}</h5>
                         <p class="card-text">{{$posts_random->description}}</p>
                         <a href="/blog/{{$posts_random->slug}}" class="btn btn-primary">Link</a>

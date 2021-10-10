@@ -15,8 +15,8 @@
 			      <h4 class="card-title">{{$product->title}}</h4>
                   <h3>{{$product->price}} $</h3>
                   <div class="d-flex align-items-center justify-content-between">
-                    <a href="/products/{{$product->slug}}" class="btn btn-primary">See page</a>
-                    <form action="/ajaxproducts" method="POST">
+                     <a href="/products/{{$product->slug}}" class="btn btn-primary">See page</a>
+                    <form action="/products" method="POST">
                      @csrf
 
                     <div

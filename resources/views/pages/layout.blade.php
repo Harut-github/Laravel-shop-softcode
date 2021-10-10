@@ -34,7 +34,7 @@
             <a class="nav-link" href="/mypage">My Page</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/wishlist">My whish List</a>
+            <a class="nav-link" href="/wishlist">My whish List <sup><span style="    color: red;border-radius: 50%;width: 20px;height: 20px; background: white;text-align: center;line-height: normal;" class="badge badge-light">0</span></sup></a>
         </li>
         @endif
       </ul>

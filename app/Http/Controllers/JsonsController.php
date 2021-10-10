@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 use App\Json;
 use Illuminate\Http\Request;
-
+	
 class JsonsController extends Controller
-{
+{	
     public function index()
     {
 

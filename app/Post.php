@@ -16,7 +16,7 @@ class Post extends Model
     }
 
      // Bunch posts + comments
-     public function comments(){
+    public function comments(){
         return $this->hasMany(Comment::class);
     }
 }

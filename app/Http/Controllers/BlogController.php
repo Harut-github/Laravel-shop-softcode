@@ -15,6 +15,7 @@ class BlogController extends Controller
 
         $posts = Post::paginate(2);
         $categories = Category::orderBy('title')->get(); //filter abc
+
         return view('pages.blog.index', compact('posts','categories'));
     }
 
@@ -37,6 +38,7 @@ class BlogController extends Controller
     {
         $categories = Category::orderBy('title')->get();
         $current_category = Category::where('slug',$slug)->first();
+
         return view('pages.blog.index', [
             'posts'=> $current_category->posts()->paginate(),
             'categories'=> $categories,

@@ -34,7 +34,11 @@
             <a class="nav-link" href="/mypage">My Page</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/wishlist">My whish List <sup><span style="    color: red;border-radius: 50%;width: 20px;height: 20px; background: white;text-align: center;line-height: normal;" class="badge badge-light">0</span></sup></a>
+            <a class="nav-link" href="/wishlist">My whish List
+              <sup>
+              <span style="color: red;border-radius: 50%;width: 20px;height: 20px; background: white;text-align: center;line-height: normal;" class="badge badge-light count_wishlist">0</span>
+              </sup>
+            </a>
         </li>
         @endif
       </ul>
@@ -90,6 +94,18 @@
 //   });
 
 // });
+
+
+// count wishlist this user 
+$( document ).ready(function() {
+  $.ajax({
+    method:"GET",
+    url:"/load-wishlist-count",
+    success:function(response){
+      $('.count_wishlist').html(response.count);
+    }
+  })
+});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>

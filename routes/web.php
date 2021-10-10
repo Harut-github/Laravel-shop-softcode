@@ -31,7 +31,11 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::get('/mypage','MypageController@index'); 
 
-    Route::resource('/wishlist','WishlistController');       
+    Route::resource('/wishlist','WishlistController'); 
+
+    //count wishlist this user
+    Route::get('load-wishlist-count','WishlistController@WishlistCount');
+
 });     
         
 Route::get('/category/{slug}', 'BlogController@getPostsCategory')->name('getPostsCategory');

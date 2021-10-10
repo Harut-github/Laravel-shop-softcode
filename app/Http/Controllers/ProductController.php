@@ -20,9 +20,9 @@ class ProductController extends Controller
     }
          
     public function store(Request $request){
-
+       
         $wishlist = new Wishlist;
-            
+                
         $wishlist->product_title = $request->get('product_title');
         $wishlist->product_slug = $request->get('product_slug');
         $wishlist->product_price = $request->get('product_price');

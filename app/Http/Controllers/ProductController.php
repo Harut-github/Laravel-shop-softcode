@@ -19,7 +19,7 @@ class ProductController extends Controller
         return view('pages.products.single', compact('products'));
     }
 
-    public function store( Request $request, $id){
+    public function store( Request $request, Cart $Cart){
 
         //take id from html
         $wishlist_id = $request->get('product_wishlist_id');
@@ -53,17 +53,28 @@ class ProductController extends Controller
                 return redirect('/products');
             }
 
+            $carts = Cart::where('product_id', $cart_id)->first();
 
+            if(!is_null($carts)){
 
-            //save product in table Cart
-            $cart = new Cart;
-            $cart->product_id = $products->id;
-            $cart->product_title = $products->title;
-            $cart->product_slug = $products->slug;
-            $cart->product_price = $products->price;
-            $cart->product_text = $products->image;
-            $cart->user_id = Auth::user()->id;
-            $cart->save();
+                //product count
+                $count = $carts->product_count;
+                $count++;
+                $carts->product_count = $count;
+                $carts->save();
+
+            }else{
+                //save product in table Cart
+                $cart = new Cart;
+                $cart->product_id = $products->id;
+                $cart->product_title = $products->title;
+                $cart->product_slug = $products->slug;
+                $cart->product_price = $products->price;
+                $cart->product_text = $products->image;
+                $cart->user_id = Auth::user()->id;
+                $cart->save();
+            }
+
         }
 
         return redirect()->back();

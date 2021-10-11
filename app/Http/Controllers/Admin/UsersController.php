@@ -74,7 +74,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->update($request,[
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',

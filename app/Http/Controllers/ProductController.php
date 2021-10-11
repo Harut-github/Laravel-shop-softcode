@@ -57,11 +57,17 @@ class ProductController extends Controller
 
             if(!is_null($carts)){
 
-                //product count
+                //click cart add count +1
                 $count = $carts->product_count;
-                $count++;
-                $carts->product_count = $count;
-                $carts->save();
+                $count++;   
+                //add count +1 and update
+                $carts->product_count = $count; 
+                
+                //price * count 
+                // $price = $carts->product_price * $carts->product_price; 
+                // $carts->product_price = $price;   
+                
+                $carts->save(); 
 
             }else{
                 //save product in table Cart
@@ -73,11 +79,11 @@ class ProductController extends Controller
                 $cart->product_text = $products->image;
                 $cart->user_id = Auth::user()->id;
                 $cart->save();
-            }
+            }   
 
         }
 
-        return redirect()->back();
+        return redirect()->back();  
     }
 
 }

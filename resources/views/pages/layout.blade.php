@@ -40,6 +40,13 @@
               </sup>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/cart">Cart
+              <sup>
+              <span style="color: red;border-radius: 50%;width: 20px;height: 20px; background: white;text-align: center;line-height: normal;" class="badge badge-light count_cart">0</span>
+              </sup>
+            </a>
+        </li>
         @endif
       </ul>
       <form class="d-flex" action="/search" method="GET" >
@@ -96,8 +103,15 @@
 // });
 
 
-// count wishlist this user 
+// count wishlist this user
 $( document ).ready(function() {
+  $.ajax({
+    method:"GET",
+    url:"/load-cart-count",
+    success:function(response){
+      $('.count_cart').html(response.count);
+    }
+  })
   $.ajax({
     method:"GET",
     url:"/load-wishlist-count",

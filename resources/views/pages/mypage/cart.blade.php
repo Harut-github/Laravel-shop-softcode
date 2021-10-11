@@ -3,21 +3,24 @@
 @section('title', 'Wish List')
 @section('content')
 <div class="container">
-<h1>My Wish List</h1>
+<h1>Cart</h1>
 
 <div class="container">
 	<div class="row">
-	@foreach($wishlists as $wishlist)
+	@foreach($carts as $cart)
 		<div class="col-sm-12 col-md-4 col-lg-4">
 		 	<div class="card">
 			    <img class="card-img-top" src="/{{ $product->image ?? 'default-image.jpg' }}" alt="Card image">
 			    <div class="card-body">
-			        <a href="/products/{{$wishlist->product_slug}}">
-                        <h4 class="card-title">{{$wishlist->product_title}}</h4>
+			        <a href="/products/{{$cart->product_slug}}">
+                        <h4 class="card-title">{{$cart->product_title}}</h4>
                     </a>
-                    <h3>{{$wishlist->product_price}} $</h3>
+                   <div class="d-flex align-items-center justify-content-between">
+                    <h3>{{$cart->product_price}} $</h3>
+                    <h4>Count - {{$cart->product_count}}</h4>
+                   </div>
                     <div class="d-flex align-items-center justify-content-between">
-                        <form action="{{ route('wishlist.destroy', $wishlist->id)}}" method="POST">
+                        <form action="{{ route('cart.destroy', $cart->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
                             <button>

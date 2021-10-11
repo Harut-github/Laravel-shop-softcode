@@ -11,15 +11,26 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/      
-             
+*/
+
 
 Route::get('/', 'HomeController@index');
 
 Route::get('/search', 'SearchController@index');
 
 Route::get('/json','JsonsController@index');
-    
+
+
+
+Route::get('/category/{slug}', 'BlogController@getPostsCategory')->name('getPostsCategory');
+
+Route::get('/register', 'AuthController@registerForm');
+Route::post('/register', 'AuthController@register')->name('register');
+Route::get('/login','AuthController@login')->name('login');
+Route::post('/','AuthController@checkLogin')->name('checkLogin');
+Route::post('/login','AuthController@logout')->name('logout');
+
+
 Route::group(['middleware'=>'auth'], function(){
     Route::resource('/products','ProductController');
     Route::get('/products/{slug}','ProductController@single');
@@ -29,22 +40,17 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::post('/comment', 'BlogController@comment')->name('comment');
 
-    Route::get('/mypage','MypageController@index'); 
+    Route::get('/mypage','MypageController@index');
 
-    Route::resource('/wishlist','WishlistController'); 
-
-    //count wishlist this user
+    Route::resource('/wishlist','WishlistController');
+    //count wishlist this user ajax
     Route::get('load-wishlist-count','WishlistController@WishlistCount');
 
-});     
-        
-Route::get('/category/{slug}', 'BlogController@getPostsCategory')->name('getPostsCategory');
-    
-Route::get('/register', 'AuthController@registerForm');
-Route::post('/register', 'AuthController@register')->name('register');
-Route::get('/login','AuthController@login')->name('login');
-Route::post('/','AuthController@checkLogin')->name('checkLogin');
-Route::post('/login','AuthController@logout')->name('logout');
+    Route::resource('/cart','CartController');
+    //count Cart this user ajax
+    Route::get('load-cart-count','CartController@CartCount');
+
+});
 
 Route::group(['prefix'=>'general_admin','namespace'=>'Admin','middleware'=>'admin'], function(){
     Route::get('/', 'DashboardController@index');

@@ -225,7 +225,7 @@
                 <i class="fa fa-list-ul"> </i> <span>Categories</span>
             </a>
         </li>
-        <li><a href="/general_admin/products"><i class="fa fa-product-hunt"></i> <span>Praducts</span></a></li>
+        <li><a href="/general_admin/products"><i class="fa fa-product-hunt"></i> <span>Products</span></a></li>
         <li>
           <a href="/general_admin/comments">
             <i class="fa fa-commenting"></i> <span>Comments</span>

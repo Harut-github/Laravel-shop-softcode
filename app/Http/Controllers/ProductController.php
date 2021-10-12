@@ -47,28 +47,25 @@ class ProductController extends Controller
         if($cart_id == true){
             //search id from products get this product
             $products = Product::where('id', $cart_id)->first();
-
             //if id null echo error or redirect this page
             if( is_null($products)){
                 return redirect('/products');
             }
+            $user = Auth::user();
+            $carts = Cart::where('user_id', $user->id)->where('product_id', $cart_id);
 
-            $carts = Cart::where('product_id', $cart_id)->first();
-
-            if(!is_null($carts)){
-
-                //click cart add count +1
-                $count = $carts->product_count;
-                $count++;   
-                //add count +1 and update
-                $carts->product_count = $count; 
-                
-                //price * count 
-                // $price = $carts->product_price * $carts->product_price; 
-                // $carts->product_price = $price;   
-                
-                $carts->save(); 
-
+            // existes in true or false
+            if($carts->exists()){
+                foreach ($carts->get() as $cart) {
+                    //click cart add count +1 and update
+                    $count = $cart->product_count;
+                    $count++;
+                    $cart->product_count = $count;
+                    // defoult price * count update total price
+                    $price_total = $cart->product_price * $cart->product_count;
+                    $cart->product_price_total = $price_total;
+                    $cart->save();
+                }
             }else{
                 //save product in table Cart
                 $cart = new Cart;
@@ -77,13 +74,14 @@ class ProductController extends Controller
                 $cart->product_slug = $products->slug;
                 $cart->product_price = $products->price;
                 $cart->product_text = $products->image;
+                $cart->product_price_total = $cart->product_price;
                 $cart->user_id = Auth::user()->id;
                 $cart->save();
-            }   
+            }
 
         }
 
-        return redirect()->back();  
+        return redirect()->back();
     }
 
 }

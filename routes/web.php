@@ -47,8 +47,6 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('load-wishlist-count','WishlistController@WishlistCount');
 
     Route::resource('/cart','CartController');
-    //count Cart this user ajax
-    Route::get('load-cart-count','CartController@CartCount');
 
 });
 

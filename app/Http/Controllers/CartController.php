@@ -10,21 +10,13 @@ class CartController extends Controller
     public function index(){
 
     	$user = Auth::user();
-        
+
         $carts = Cart::where('user_id',$user->id)->get();
 
         // Count all price total and echo in html
-        $total = Cart::where('user_id', $user->id)->sum('product_price');
+        $total = Cart::where('user_id', $user->id)->sum('product_price_total');
 
         return view('pages.mypage.cart', compact('carts','total'));
-    }   
-
-    //take count cart this user send route , route send ajax, ajax send html
-    public function CartCount(){
-        $user = Auth::user();   
-
-    	$countcart = Cart::where('user_id',$user->id)->count();
-    	return response()->json(['count'=>$countcart]);
     }
 
     public function destroy($id){

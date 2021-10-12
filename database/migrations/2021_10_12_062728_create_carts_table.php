@@ -20,7 +20,8 @@ class CreateCartsTable extends Migration
             $table->string('product_title');
             $table->string('product_slug');
             $table->integer('product_price');
-            $table->integer('product_count')->default(1);;
+            $table->integer('product_price_total')->default(0);
+            $table->integer('product_count')->default(1);
             $table->text('product_text')->nullable();
             $table->timestamps();
         });

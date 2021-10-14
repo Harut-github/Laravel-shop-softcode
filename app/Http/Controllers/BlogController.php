@@ -32,7 +32,7 @@ class BlogController extends Controller
 
         return view('pages.blog.single', compact('posts','comments'));
     }
-    
+
     //for categories fillter
     public function getPostsCategory($slug)
     {

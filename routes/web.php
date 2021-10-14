@@ -20,8 +20,6 @@ Route::get('/search', 'SearchController@index');
 
 Route::get('/json','JsonsController@index');
 
-
-
 Route::get('/category/{slug}', 'BlogController@getPostsCategory')->name('getPostsCategory');
 
 Route::get('/register', 'AuthController@registerForm');
@@ -45,6 +43,10 @@ Route::group(['middleware'=>'auth'], function(){
     Route::resource('/wishlist','WishlistController');
     //count wishlist this user ajax
     Route::get('load-wishlist-count','WishlistController@WishlistCount');
+
+    Route::get('/delete_cart_items','CartController@deleteCartItems');
+    Route::get('/thanks','CartController@thanks');
+
 
     Route::resource('/cart','CartController');
 

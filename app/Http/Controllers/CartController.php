@@ -22,9 +22,26 @@ class CartController extends Controller
     public function destroy($id){
 
     	$cart = Cart::find($id);
-
+        dd($cart);
     	$cart->delete();
 
     	return redirect('/cart');
    }
+
+    public function deleteCartItems(Request $request, Cart $Cart){
+
+        $user = Auth::user();
+        $products = Cart::where('user_id', $user->id)->get();
+
+        foreach ($products as $product) {
+            $product->delete();
+        }
+
+    }
+
+    public function thanks(){
+
+        return view('pages.mypage.thanks');
+    }
+
 }

@@ -9,8 +9,13 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+
         $products = Product::all();
+        $maxprice = $request->input('filter_price');
+        if($maxprice){
+            $products = Product::where('price', '<=', $maxprice)->get();
+        }
         return view('pages.products.index', compact('products'));
     }
 
@@ -19,8 +24,7 @@ class ProductController extends Controller
         return view('pages.products.single', compact('products'));
     }
 
-    public function store( Request $request, Cart $Cart){
-
+    public function store(Request $request, Cart $Cart){
         //take id from html
         $wishlist_id = $request->get('product_wishlist_id');
 
@@ -83,6 +87,7 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+
 
 }
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
 Route::get('/', 'HomeController@index');
 
 Route::get('/search', 'SearchController@index');
@@ -47,7 +48,6 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::get('/delete_cart_items','CartController@deleteCartItems');
     Route::get('/thanks','CartController@thanks');
-
 
     Route::resource('/cart','CartController');
 

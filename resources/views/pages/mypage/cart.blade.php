@@ -53,15 +53,7 @@ tr:nth-child(even) {
             </tr>
         @endforeach
         </table>
-    </div>
-
-    <div class="row">
-        <div class="col-6">
-            <form action="" method="POST">
-
-                <button>Coll me</button>
-            </form>
-        </div>
+        <div class="col-6"></div>
         <div class="col-6">
             <table>
                 <tr>
@@ -73,7 +65,54 @@ tr:nth-child(even) {
                     </td>
                 </tr>
             </table>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="row">
+        <div class="col-6">
+            <form action="/cart" method="POST">
+             @csrf
 
+             @if($message = Session::get('success'))
+             <div class="alert alert-success" role="alert">
+                {{ $message }}
+             </div>
+             @endif
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label for="name">
+                            Your Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" >
+                    </div>
+                    @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <div class="col-sm-6 form-group">
+                        <label for="email">
+                            Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" >
+                    </div>
+                    @error('email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="message">
+                            Message:</label>
+                        <textarea class="form-control" type="textarea" name="message" id="message" maxlength="6000" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button type="submit" class="btn btn-lg btn-default pull-right" >Send →</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-6">
             {{-- Start paypal   --}}
             <script src="https://www.paypal.com/sdk/js?client-id=Adk7R1B2LPUNjnSrhcrl_FeyT7oK0pYNnZND2MKD2AcbHqS_8lVAcYKsX3tVw-GplUhxQotSmdYKGC7x&components=messages,buttons">
             </script>

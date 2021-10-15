@@ -23,6 +23,7 @@ class PostsController extends Controller
       public function store(Request $request)
       {
 
+
         //   dd($request->all());
          Post::create(request()->validate([
              'title' => ['required', 'min:3'],

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 use App\Cart;
 use App\Carthistory;
+use App\Mail\SendEmail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use PDO;
+use SplSubject;
 
 class CartController extends Controller
 {
@@ -47,8 +51,18 @@ class CartController extends Controller
             $history->user_id = Auth::user()->id;
             $history->save();
 
+            //delete in table carts
             $product->delete();
         }
+
+    }
+
+    public function store(Request $request){
+
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
 
     }
 

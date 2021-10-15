@@ -38,7 +38,8 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::post('/comment', 'BlogController@comment')->name('comment');
 
-    Route::get('/mypage','MypageController@index');
+    Route::resource('/mypage','MypageController');
+    // Route::delete('/mypage','MypageController@destroy')->name('mypage');
 
     Route::resource('/wishlist','WishlistController');
     //count wishlist this user ajax

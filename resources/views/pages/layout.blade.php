@@ -130,6 +130,25 @@ const
 document.addEventListener("DOMContentLoaded", setValue);
 range.addEventListener('input', setValue);
 </script>
+
+<script>
+
+    $( ".chat_list" ).first().addClass('active_chat');
+
+    $( ".chat_list" ).click(function() {
+       $('.chat_list').removeClass('active_chat');
+       $(this).addClass('active_chat');
+
+       let friend_id = $('.active_chat').attr('data-id');
+       $('.friend_id').val(friend_id);
+    });
+
+    $( window ).on( "load", function() {
+        let friend_id = $('.active_chat').attr('data-id');
+        $('.friend_id').val(friend_id);
+    });
+
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
 </html>

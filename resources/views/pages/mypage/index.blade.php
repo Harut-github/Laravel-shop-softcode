@@ -17,7 +17,11 @@
     tr:nth-child(even) {
       background-color: #dddddd;
     }
-    </style>
+</style>
+<div class="container">
+    <a href="/messages">Chat</a>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-6">
@@ -77,10 +81,11 @@
             <h2>Weather</h2>
             <ul>
                 <li><strong>City -> </strong>{{ $weather_user->name }}</li>
-                <li><strong>Weather -> </strong>{{ $weather_user->weather[0]->description}} <img src="http://openweathermap.org/img/wn/{{ $weather_user->weather[0]->icon }}@2x.png" alt=""></li>
+                <li><strong>Weather -> </strong>{{ $weather_user->weather[0]->description}} <img src="http://openweathermap.org/img/wn/{{ $weather_user->weather[0]->icon }}@2x.png" alt="">{{$weather_user->main->temp}}</li>
             </ul>
         </div>
         <div class="col-6">
+
         </div>
     </div>
 </div>

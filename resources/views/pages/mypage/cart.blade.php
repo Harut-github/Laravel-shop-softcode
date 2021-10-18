@@ -18,6 +18,8 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
+
+@if(!$carts->isEmpty())
 <div class="container">
     <h1>Cart</h1>
     <div class="row">
@@ -154,6 +156,7 @@ tr:nth-child(even) {
         </div>
     </div>
 </div>
-
-
+@else
+<h1>Your Shopping Cart is empty</h1>
+@endif
 @endsection

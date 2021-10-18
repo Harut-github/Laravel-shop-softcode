@@ -51,6 +51,8 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::resource('/cart','CartController');
 
+    // chat
+    Route::resource('/messages','MessagesController');
 });
 
 Route::group(['prefix'=>'general_admin','namespace'=>'Admin','middleware'=>'admin'], function(){

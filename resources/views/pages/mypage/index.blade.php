@@ -71,7 +71,18 @@
     </div>
 </div>
 <section>
-
-
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2>Weather</h2>
+            <ul>
+                <li><strong>City -> </strong>{{ $weather_user->name }}</li>
+                <li><strong>Weather -> </strong>{{ $weather_user->weather[0]->description}} <img src="http://openweathermap.org/img/wn/{{ $weather_user->weather[0]->icon }}@2x.png" alt=""></li>
+            </ul>
+        </div>
+        <div class="col-6">
+        </div>
+    </div>
+</div>
 
 @endsection

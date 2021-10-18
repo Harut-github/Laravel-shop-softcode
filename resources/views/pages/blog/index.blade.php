@@ -12,7 +12,7 @@
             <div style="margin:15px 0;">
                 @foreach($categories as $category)
                     <a class="btn btn-info m-3" href="{{route('getPostsCategory', $category->slug)}}">{{$category->title}}</a>
-                 @endforeach
+                @endforeach
             </div>
         </div>
     </div>

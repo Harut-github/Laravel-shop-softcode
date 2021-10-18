@@ -7,9 +7,9 @@
 
 <div class="container">
 <div class="row">
-
+<input type="text" id="myInput">
 @foreach ($users as $user)
-<div class="col-sm-12 col-md-3 col-lg-3">
+<div class="col-sm-12 col-md-3 col-lg-3 item">
     <div class="card text-white bg-info mb-3">
       <div class="card-header">{{$user->username}}</div>
       <div class="card-body">
@@ -45,3 +45,14 @@
 </div>
 
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".item").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>

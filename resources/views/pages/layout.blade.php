@@ -135,12 +135,83 @@ range.addEventListener('input', setValue);
 
     $( ".chat_list" ).first().addClass('active_chat');
 
+    $( ".msg_send_btn" ).click(function() {
+        let friend_id = $('.friend_id').val();
+        let sms = $('.write_msg').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+        method:"POST",
+        url:"/messages",
+        data:{friend_id:friend_id, sms:sms},
+            success:function(response){
+                $('.msg_history').html('');
+                $.each(response.data, function( index, value ) {
+
+                    if(value.sender_id == friend_id || value.recipient_id == friend_id){
+
+                        console.log(value);
+
+                        if(value.recipient_id == friend_id){
+                            $('.msg_history').append(
+                            '<div class="outgoing_msg"><div class="sent_msg"><p>'+value.sms+'</p><span class="time_date">   |  </span></div></div>'
+                            );
+                        }else if (value.sender_id == friend_id) {
+                            $('.msg_history').append(
+                                '<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>'+value.sms+'</p><span class="time_date">   |  </span></div></div></div>'
+                            );
+                        }
+
+                    }
+
+                });
+            }
+        })
+    });
+
     $( ".chat_list" ).click(function() {
        $('.chat_list').removeClass('active_chat');
        $(this).addClass('active_chat');
 
-       let friend_id = $('.active_chat').attr('data-id');
-       $('.friend_id').val(friend_id);
+       let friend_only_id = $('.active_chat').attr('data-id');
+       $('.friend_id').val(friend_only_id);
+
+      let token = $('meta[name="csrf-token"]').attr('content');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+       $.ajax({
+        method:"POST",
+        url:"/messages",
+        data:{friend_only_id:friend_only_id, token:token},
+            success:function(response){
+                $('.msg_history').html('');
+                $.each(response.data, function( index, value ) {
+
+                    if(value.sender_id == friend_only_id || value.recipient_id == friend_only_id){
+
+                        console.log(value);
+
+                        if(value.recipient_id == friend_only_id){
+                            $('.msg_history').append(
+                            '<div class="outgoing_msg"><div class="sent_msg"><p>'+value.sms+'</p><span class="time_date">   |  </span></div></div>'
+                            );
+                        }else if (value.sender_id == friend_only_id) {
+                            $('.msg_history').append(
+                                '<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>'+value.sms+'</p><span class="time_date">   |  </span></div></div></div>'
+                            );
+                        }
+
+                    }
+
+                });
+            }
+        })
     });
 
     $( window ).on( "load", function() {

@@ -138,6 +138,9 @@ img{ max-width:100%;}
   height: 516px;
   overflow-y: auto;
 }
+button{
+    background: transparent;
+}
     </style>
 <div class="container">
     <div class="row">
@@ -162,15 +165,17 @@ img{ max-width:100%;}
                         <div class="inbox_chat">
 
                             @foreach($users as $user)
-                            <div class="chat_list" data-id="{{$user->id}}">
-                                <div class="chat_people">
-                                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                <div class="chat_ib">
-                                    <h5>{{$user->name}} <span class="chat_date">{{$user->created_at->format('d/m/Y')}}</span></h5>
-                                    <p>{{$user->email}} </p>
+
+                                <div class="chat_list" data-id="{{$user->id}}">
+                                    <div class="chat_people">
+                                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                    <div class="chat_ib">
+                                        <h5>{{$user->name}} <span class="chat_date">{{$user->created_at->format('d/m/Y')}}</span></h5>
+                                        <p>{{$user->email}} </p>
+                                    </div>
+                                    </div>
                                 </div>
-                                </div>
-                            </div>
+
                             @endforeach
                         </div>
                     </div>
@@ -179,22 +184,24 @@ img{ max-width:100%;}
 
                             @foreach($messages as $messag)
 
-                                @if($messag->sender_id == Auth::id())
-                                    <div class="outgoing_msg">
-                                        <div class="sent_msg">
-                                            <strong></strong>
-                                        <p>{{$messag->sms}}</p>
-                                        <span class="time_date"> {{$messag->created_at->format("g:i a")}}  |  {{$messag->created_at->format("d.m.Y")}}</span></div>
-                                    </div>
-                                @else
-                                    <div class="incoming_msg">
-                                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                        <div class="received_msg">
-                                        <div class="received_withd_msg">
+                                @if($messag->sender_id == $friend_id or $messag->recipient_id == $friend_id)
+                                    @if($messag->sender_id == Auth::id())
+                                        <div class="outgoing_msg">
+                                            <div class="sent_msg">
+                                                <strong></strong>
                                             <p>{{$messag->sms}}</p>
                                             <span class="time_date"> {{$messag->created_at->format("g:i a")}}  |  {{$messag->created_at->format("d.m.Y")}}</span></div>
                                         </div>
-                                    </div>
+                                    @elseif($messag->recipient_id == Auth::id())
+                                        <div class="incoming_msg">
+                                            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                            <div class="received_msg">
+                                            <div class="received_withd_msg">
+                                                <p>{{$messag->sms}}</p>
+                                                <span class="time_date"> {{$messag->created_at->format("g:i a")}}  |  {{$messag->created_at->format("d.m.Y")}}</span></div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 @endif
 
                             @endforeach
@@ -202,12 +209,12 @@ img{ max-width:100%;}
                         </div>
                         <div class="type_msg">
                         <div class="input_msg_write">
-                            <form action="/messages" method="POST">
-                            @csrf
+                            {{-- <form action="/messages" method="POST">
+                            @csrf --}}
                                 <input type="hidden" class="friend_id" name="friend_id" value="">
                                 <input type="text" class="write_msg" name="sms" placeholder="Type a message" />
                                 <button class="msg_send_btn"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                            </form>
+                            {{-- </form> --}}
                         </div>
                         </div>
                     </div>

@@ -83,24 +83,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-// $( ".js_click_praduct" ).click(function() {
-//   let product_id = $(this).attr('data-title');
-//   let product_title = $(this).attr('data-title');
-//   let product_slug = $(this).attr('data-slug');
-//   let product_price = $(this).attr('data-price');
-//   let product_img = $(this).attr('data-img');
-//   let token = $('meta[name="csrf-token"]').attr('content');
-//   $.ajax({
-//       url:"/ajaxproducts",
-//       method:"get",
-//       date:{product_id:product_id,product_title:product_title,product_slug:product_slug,product_price:product_price,product_img:product_img,token:token},
-//       success:function(date){
-//         alert('your Praduct added in wish list :)');
-//       }
-//   });
-
-// });
-
 
 $( document ).ready(function() {
 
@@ -149,6 +131,7 @@ range.addEventListener('input', setValue);
         data:{friend_id:friend_id, sms:sms},
             success:function(response){
                 $('.msg_history').html('');
+                $('.write_msg').val('');
                 $.each(response.data, function( index, value ) {
 
                     if(value.sender_id == friend_id || value.recipient_id == friend_id){
@@ -157,11 +140,11 @@ range.addEventListener('input', setValue);
 
                         if(value.recipient_id == friend_id){
                             $('.msg_history').append(
-                            '<div class="outgoing_msg"><div class="sent_msg"><p>'+value.sms+'</p><span class="time_date">   |  </span></div></div>'
+                            '<div class="outgoing_msg"><div class="sent_msg"><p>'+value.sms+'</p><span class="time_date"> '+value.created_at+' </span></div></div>'
                             );
                         }else if (value.sender_id == friend_id) {
                             $('.msg_history').append(
-                                '<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>'+value.sms+'</p><span class="time_date">   |  </span></div></div></div>'
+                                '<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>'+value.sms+'</p><span class="time_date"> '+value.created_at+' </span></div></div></div>'
                             );
                         }
 
@@ -195,20 +178,16 @@ range.addEventListener('input', setValue);
 
                     if(value.sender_id == friend_only_id || value.recipient_id == friend_only_id){
 
-                        console.log(value);
-
                         if(value.recipient_id == friend_only_id){
                             $('.msg_history').append(
-                            '<div class="outgoing_msg"><div class="sent_msg"><p>'+value.sms+'</p><span class="time_date">   |  </span></div></div>'
+                            '<div class="outgoing_msg"><div class="sent_msg"><p>'+value.sms+'</p><span class="time_date"> '+value.created_at+'  </span></div></div>'
                             );
                         }else if (value.sender_id == friend_only_id) {
                             $('.msg_history').append(
-                                '<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>'+value.sms+'</p><span class="time_date">   |  </span></div></div></div>'
+                                '<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>'+value.sms+'</p><span class="time_date"> '+value.created_at+' </span></div></div></div>'
                             );
                         }
-
                     }
-
                 });
             }
         })
@@ -219,6 +198,16 @@ range.addEventListener('input', setValue);
         $('.friend_id').val(friend_id);
     });
 
+</script>
+<script>
+    $(document).ready(function(){
+      $(".search-bar").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $(".chat_list").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>

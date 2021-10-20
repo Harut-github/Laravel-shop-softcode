@@ -180,6 +180,7 @@ button{
                         </div>
                     </div>
                     <div class="mesgs">
+
                         <div class="msg_history">
 
                             @foreach($messages as $messag)
@@ -208,14 +209,14 @@ button{
 
                         </div>
                         <div class="type_msg">
-                        <div class="input_msg_write">
-                            {{-- <form action="/messages" method="POST">
-                            @csrf --}}
-                                <input type="hidden" class="friend_id" name="friend_id" value="">
-                                <input type="text" class="write_msg" name="sms" placeholder="Type a message" />
-                                <button class="msg_send_btn"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                            {{-- </form> --}}
-                        </div>
+                            <div class="input_msg_write">
+                                {{-- <form action="/messages" method="POST">
+                                @csrf --}}
+                                    <input type="hidden" class="friend_id" name="friend_id" value="">
+                                    <input type="text" class="write_msg" name="sms" placeholder="Type a message" />
+                                    <button class="msg_send_btn"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                {{-- </form> --}}
+                            </div>
                         </div>
                     </div>
                 </div>

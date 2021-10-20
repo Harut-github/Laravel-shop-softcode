@@ -22,6 +22,7 @@ class MypageController extends Controller
         $user = Auth::user();
 
         $carthistories = Carthistory::where('user_id', $user->id)->get();
+
         return view('pages.mypage.index', compact('user','carthistories','weather_user'));
     }
 

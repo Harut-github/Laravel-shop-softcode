@@ -28,14 +28,16 @@ class AuthController extends Controller
     public function checkLogin(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'email' => 'required', 'email',
+            'password' => 'required|min:3',
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
             return redirect()->intended('/mypage');
+        }else{
+            return redirect()->back();
         }
     }
     public function login()
